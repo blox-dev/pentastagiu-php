@@ -1,10 +1,11 @@
 <?php
+require("Database.php");
 $title = $_POST["title"];
 $author_name = $_POST["author_name"];
 $publisher_name = $_POST["publisher_name"];
 $publisher_year = $_POST["publisher_year"];
 
-$pdo = new PDO('mysql:host=localhost;dbname=test','root','');
+$pdo = Database::get_connection();
 $statement = $pdo -> prepare('insert into books values (null,:title,:author_name,:publisher_name,:publisher_year,sysdate(),sysdate())');
 
 $arr = [

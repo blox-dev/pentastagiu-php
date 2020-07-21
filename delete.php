@@ -1,5 +1,6 @@
 <?php
-    $pdo = new PDO('mysql:host=localhost;dbname=test','root','');
+require("Database.php");
+    $pdo = Database::get_connection();
     $id = $_GET["id"];
     $statement = $pdo->prepare('delete from books where id=:id');
     $arr = [

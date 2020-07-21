@@ -5,7 +5,8 @@
     </head>
     <body>
         <?php
-            $pdo = new PDO('mysql:host=localhost;dbname=test','root','');
+        require("Database.php");
+            $pdo = Database::get_connection();
             $statement = $pdo->prepare('select * from books where id =:id');
             $id=$_GET["id"];
             $arr = [
