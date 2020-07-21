@@ -1,11 +1,10 @@
 <?php
-require("Database.php");
+    require("Database.php");
     $pdo = Database::get_connection();
-    $id = $_GET["id"];
     $statement = $pdo->prepare('delete from books where id=:id');
-    $arr = [
-        "id" => $id
-    ];
 
-    $statement->execute($arr);
+    $id = $_GET["id"];
+    $statement->execute([
+        "id" => $id
+    ]);
     header('Location: index.php');

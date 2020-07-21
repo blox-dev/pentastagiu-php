@@ -8,7 +8,7 @@ $id = $_POST["id"];
 
 
 $pdo = Database::get_connection();
-$statement = $pdo -> prepare('update books set title=:title, author_name=:author_name, publisher_name=:publisher_name, publisher_year=:publisher_year where id=:id');
+$statement = $pdo -> prepare('update books set title=:title, author_name=:author_name, publisher_name=:publisher_name, publisher_year=:publisher_year, updated_at=sysdate() where id=:id');
 
 $arr = [
     "title" => $title,
