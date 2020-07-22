@@ -1,5 +1,5 @@
 <?php
-    require("Database.php");
+    require_once("Database.php");
     $title = $_POST["title"];
     $author_name = $_POST["author_name"];
     $publisher_name = $_POST["publisher_name"];

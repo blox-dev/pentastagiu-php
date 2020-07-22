@@ -6,7 +6,7 @@
     <body>
         <h3> Edit book details</h3>
         <?php
-            require("Database.php");
+            require_once("Database.php");
             $pdo = Database::get_connection();
             $statement = $pdo->prepare('select * from books where id =:id');
             $id=$_GET["id"];

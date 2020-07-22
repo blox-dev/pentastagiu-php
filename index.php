@@ -10,12 +10,12 @@
             </form>
             <br>
             <?php
-                require("Database.php");
+                require_once("Database.php");
                 $pdo = Database::get_connection();
                 $statement = $pdo->prepare('select * from books');
                 $statement -> execute();
                 $results = $statement -> fetchAll(PDO::FETCH_ASSOC);
-
+                
                 echo "<table> <tr> <th>ID</th> <th>Title</th> <th>Author Name</th> <th>Publisher Name</th> <th>Publisher Year</th> <th>Created at</th> <th>Updated at</th> <th></th><th></th></tr>";
                 for($i=0; isset($results[$i]); $i++){
                     echo "<tr> <td>".$results[$i]["id"]."</td> <td>".
