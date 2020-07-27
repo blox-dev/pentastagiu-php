@@ -8,6 +8,6 @@
 
     try {
         $router->direct($uri);
-    } catch(Exception $e){
+    } catch(Exception $exception){
         require 'views/errors/404.error.php';
     }

@@ -1,10 +1,10 @@
 <?php
 
 return [
-  '' => 'BookController@index',
-  'create' => 'BookController@create',
-  'store' => 'BookController@store',
-    'edit' => 'BookController@edit',
-    'update' => 'BookController@update',
-    'delete' => 'BookController@delete'
+  '' => 'Book@index',
+  'create' => 'Book@create',
+  'store' => 'Book@store',
+    'edit' => 'Book@edit',
+    'update' => 'Book@update',
+    'delete' => 'Book@delete'
 ];

@@ -14,6 +14,7 @@ class Router
     public function direct($uri){
         if(array_key_exists($uri,$this->routes)){
             list($class, $method) = explode('@',$this->routes[$uri]);
+            $class.='Controller';
             $controller = new $class;
             $controller->{$method}();
         } else {

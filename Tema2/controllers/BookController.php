@@ -20,7 +20,8 @@
         }
         public function create()
         {
-            $this->bookView->loadView('create');
+            $data = $this->bookModel->create();
+            $this->bookView->loadView('create',$data);
         }
         public function store()
         {
@@ -29,8 +30,8 @@
         }
         public function edit()
         {
-            $book = $this->bookModel->edit();
-            $this->bookView->loadView('edit',['book'=>$book]);
+            $data = $this->bookModel->edit();
+            $this->bookView->loadView('edit',$data);
         }
         public function update()
         {
@@ -42,5 +43,4 @@
             $this->bookModel->delete();
             header('Location: /');
         }
-
     }
