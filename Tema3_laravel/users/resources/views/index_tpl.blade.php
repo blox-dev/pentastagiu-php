@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ro">
 <head>
-    <title>Library</title>
+    <title>View {{$thing.'s'}}</title>
     <link rel="stylesheet" type="text/css" href="{{url('css/styles.css')}}">
 </head>
 <body>
@@ -50,28 +50,39 @@
 </table>
 
 <br>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Created at</th>
-        <th>Updated at</th>
-        <th></th>
-    </tr>
 
-    @foreach( $publishers as $publisher )
+<table>
+   <tr>
+       @foreach(array_keys(${$thing.'s'}[0]->toArray()) as $key)
+       <th>{{str_replace('_',' ',ucfirst($key))}}</th>
+       @endforeach
+       <th></th><th></th>
+   </tr>
+        @foreach(${$thing.'s'}->toArray() as $row)
     <tr>
-        <td>{{ $publisher->id }}</td>
-        <td>{{ $publisher->name }}</td>
-        <td>{{ $publisher->created_at }}</td>
-        <td>{{ $publisher->updated_at }}</td>
+            @foreach($row as $key => $value)
+                <td>
+                    @if ($key=='created_at' || $key == 'updated_at')
+                        {{date("Y-m-d H:i:s",strtotime($value))}}
+                    @else {{$value}}
+                    @endif
+                </td>
+            @endforeach
         <td>
-            <form action="{{ action('PublisherController@delete') }}">
-                <input type="hidden" name="id" value="{{$publisher->id}}">
-                <input type="submit" value="Delete publisher">
+            <form action="{{ action(ucfirst($thing).'Controller@edit') }}">
+                <input type="hidden" name="id" value="{{$row['id']}}">
+                <input type="submit" value="Edit {{$thing}}">
+            </form>
+        </td>
+        <td>
+            <form action="{{ action(ucfirst($thing).'Controller@delete') }}">
+                <input type="hidden" name="id" value="{{$row['id']}}">
+                <input type="submit" value="Delete {{$thing}}">
             </form>
         </td>
     </tr>
-    @endforeach
+        @endforeach
+</table>
+
 </body>
 </html>

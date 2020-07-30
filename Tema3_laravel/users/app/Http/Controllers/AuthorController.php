@@ -15,7 +15,7 @@ class AuthorController extends Controller
     }
 
     public function index(){
-        return view('author_index',['authors' => $this->getAuthors()]);
+        return view('index_tpl',['thing'=>'author', 'authors' => $this->getAuthors()]);
     }
 
     public function create()
@@ -32,7 +32,11 @@ class AuthorController extends Controller
 
         $author->save();
 
-        return view('author_index',['authors' => $this->getAuthors()]);
+        return view('index_tpl',['thing'=>'author', 'authors' => $this->getAuthors()]);
+    }
+    public function edit()
+    {
+
     }
     public function delete()
     {
@@ -41,6 +45,6 @@ class AuthorController extends Controller
         Author::where("id",$id)->delete();
         Book::where("author_id",$id)->delete();
 
-        return view('author_index',['authors' => $this->getAuthors()]);
+        return view('index_tpl',['thing'=>'author', 'authors' => $this->getAuthors()]);
     }
 }

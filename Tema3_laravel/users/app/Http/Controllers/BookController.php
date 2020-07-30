@@ -24,7 +24,7 @@ class BookController extends Controller
 
     public function index()
     {
-        return view('book_index',['books' => $this->getBooks()]);
+        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
     }
 
     public function create()
@@ -48,7 +48,7 @@ class BookController extends Controller
 
         $book->save();
 
-        return view('book_index',['books' => $this->getBooks()]);
+        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
     }
 
     public function show($id)
@@ -89,6 +89,6 @@ class BookController extends Controller
         Book::where("id",$id)->delete();
 
 
-        return view('book_index',['books' => $this->getBooks()]);
+        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
     }
 }

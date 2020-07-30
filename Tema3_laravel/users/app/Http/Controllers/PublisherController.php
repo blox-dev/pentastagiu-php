@@ -14,7 +14,7 @@ class PublisherController extends Controller
     }
 
     public function index(){
-        return view('publisher_index',['publishers' => $this->getPublishers()]);
+        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
     }
 
     public function create()
@@ -31,7 +31,11 @@ class PublisherController extends Controller
 
         $publisher->save();
 
-        return view('publisher_index',['publishers' => $this->getPublishers()]);
+        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
+    }
+    public function edit()
+    {
+
     }
     public function delete()
     {
@@ -40,6 +44,6 @@ class PublisherController extends Controller
         Publisher::where("id",$id)->delete();
         Book::where("publisher_id",$id)->delete();
 
-        return view('publisher_index',['publishers' => $this->getPublishers()]);
+        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
     }
 }

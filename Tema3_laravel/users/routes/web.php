@@ -29,9 +29,11 @@ Route::get('/books/delete','BookController@delete');
 Route::get('/authors','AuthorController@index');
 Route::get('/authors/create','AuthorController@create');
 Route::post('/authors/store','AuthorController@store');
+Route::get('/authors/edit','AuthorController@edit');
 Route::get('/authors/delete','AuthorController@delete');
 
 Route::get('/publishers','PublisherController@index');
 Route::get('/publishers/create','PublisherController@create');
 Route::post('/publishers/store','PublisherController@store');
+Route::get('/publishers/edit','PublisherController@edit');
 Route::get('/publishers/delete','PublisherController@delete');
