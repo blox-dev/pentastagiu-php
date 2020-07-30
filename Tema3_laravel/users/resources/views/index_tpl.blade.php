@@ -13,76 +13,65 @@
     </tr>
     <tr>
         <td>
-            <form action="{{ action('BookController@index') }}">
-                <input type="submit" value="View books">
-            </form>
+            <a href="{{action('BookController@index')}}">View books</a>
         </td>
         <td>
-            <form action="{{ action('BookController@create') }}">
-                <input type="submit" value="Add book">
-            </form>
+            <a href="{{action('BookController@create')}}">Add book</a>
         </td>
     </tr>
     <tr>
         <td>
-            <form action="{{ action('AuthorController@index') }}">
-                <input type="submit" value="View authors">
-            </form>
+            <a href="{{action('AuthorController@index')}}">View authors</a>
         </td>
         <td>
-            <form action="{{ action('AuthorController@create') }}">
-                <input type="submit" value="Add author">
-            </form>
+            <a href="{{action('AuthorController@create')}}">Add author</a>
         </td>
     </tr>
     <tr>
         <td>
-            <form action="{{ action('PublisherController@index') }}">
-                <input type="submit" value="View publishers">
-            </form>
+            <a href="{{action('PublisherController@index')}}">View publishers</a>
         </td>
         <td>
-            <form action="{{ action('PublisherController@create') }}">
-                <input type="submit" value="Add publisher">
-            </form>
+            <a href="{{action('PublisherController@create')}}">Add publisher</a>
         </td>
     </tr>
 </table>
 
+@if(count(${$thing.'s'})!=0)
 <br>
-
-<table>
-   <tr>
-       @foreach(array_keys(${$thing.'s'}[0]->toArray()) as $key)
-       <th>{{str_replace('_',' ',ucfirst($key))}}</th>
-       @endforeach
-       <th></th><th></th>
-   </tr>
-        @foreach(${$thing.'s'}->toArray() as $row)
-    <tr>
-            @foreach($row as $key => $value)
-                <td>
-                    @if ($key=='created_at' || $key == 'updated_at')
-                        {{date("Y-m-d H:i:s",strtotime($value))}}
-                    @else {{$value}}
-                    @endif
-                </td>
+    <table>
+       <tr>
+           @foreach(array_keys(${$thing.'s'}[0]->toArray()) as $key)
+           <th>{{str_replace('_',' ',ucfirst($key))}}</th>
+           @endforeach
+           <th></th><th></th>
+       </tr>
+            @foreach(${$thing.'s'}->toArray() as $row)
+        <tr>
+                @foreach($row as $key => $value)
+                    <td>
+                        @if ($key=='created_at' || $key == 'updated_at')
+                            {{date("Y-m-d H:i:s",strtotime($value))}}
+                        @else {{$value}}
+                        @endif
+                    </td>
+                @endforeach
+            <td>
+                <form action="{{ action(ucfirst($thing).'Controller@edit') }}">
+                    <input type="hidden" name="id" value="{{$row['id']}}">
+                    <input type="submit" value="Edit {{$thing}}">
+                </form>
+            </td>
+            <td>
+                <form action="{{ action(ucfirst($thing).'Controller@delete') }}">
+                    <input type="hidden" name="id" value="{{$row['id']}}">
+                    <input type="submit" value="Delete {{$thing}}">
+                </form>
+            </td>
+        </tr>
             @endforeach
-        <td>
-            <form action="{{ action(ucfirst($thing).'Controller@edit') }}">
-                <input type="hidden" name="id" value="{{$row['id']}}">
-                <input type="submit" value="Edit {{$thing}}">
-            </form>
-        </td>
-        <td>
-            <form action="{{ action(ucfirst($thing).'Controller@delete') }}">
-                <input type="hidden" name="id" value="{{$row['id']}}">
-                <input type="submit" value="Delete {{$thing}}">
-            </form>
-        </td>
-    </tr>
-        @endforeach
-</table>
+    </table>
+@endif
 
 </body>
 </html>

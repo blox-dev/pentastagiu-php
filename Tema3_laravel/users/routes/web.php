@@ -13,11 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/posts/{post}', 'PostController@show');
+Route::get('/', 'BookController@index');
 
 Route::get('/books','BookController@index');
 Route::get('/books/create','BookController@create');
@@ -30,10 +26,12 @@ Route::get('/authors','AuthorController@index');
 Route::get('/authors/create','AuthorController@create');
 Route::post('/authors/store','AuthorController@store');
 Route::get('/authors/edit','AuthorController@edit');
+Route::post('/authors/update','AuthorController@update');
 Route::get('/authors/delete','AuthorController@delete');
 
 Route::get('/publishers','PublisherController@index');
 Route::get('/publishers/create','PublisherController@create');
 Route::post('/publishers/store','PublisherController@store');
 Route::get('/publishers/edit','PublisherController@edit');
+Route::post('/publishers/update','PublisherController@update');
 Route::get('/publishers/delete','PublisherController@delete');

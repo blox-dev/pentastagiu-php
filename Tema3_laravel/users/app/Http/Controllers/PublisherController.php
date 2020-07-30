@@ -35,7 +35,25 @@ class PublisherController extends Controller
     }
     public function edit()
     {
+        $id = request('id');
 
+        $publisher = Publisher::where('id',$id)->first();
+
+        return view('edit_tpl',[
+            'thing'=>'publisher',
+            'publisher'=>$publisher,
+            'text_input' => ['name']
+        ]);
+    }
+    public function update(Request $request)
+    {
+        $publisher = Publisher::find($request->id);
+
+        $publisher->name = $request->name;
+
+        $publisher->save();
+
+        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
     }
     public function delete()
     {

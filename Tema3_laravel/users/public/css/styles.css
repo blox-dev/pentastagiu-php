@@ -29,6 +29,12 @@ div {
     padding: 20px;
 }
 
+a{
+    border-radius: 0.25rem;
+    text-decoration: none;
+    margin: 0.25rem;
+}
+
 table{
     font-family: arial,sans-serif;
     border-collapse: collapse;

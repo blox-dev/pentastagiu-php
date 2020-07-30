@@ -32,9 +32,11 @@ class BookController extends Controller
         $authors = Author::all();
         $publishers = Publisher::all();
 
-        return view('create_tpl',['thing'=>'book',
+        return view('create_tpl',[
+            'thing'=>'book',
             'option_input' => ['authors' => $authors, 'publishers' => $publishers],
-            'text_input' => ['title','publish_year']]);
+            'text_input' => ['title','publish_year']
+        ]);
     }
    public function store(Request $request)
     {
@@ -65,7 +67,14 @@ class BookController extends Controller
         $authors = Author::all();
         $publishers = Publisher::all();
 
-        return view('book_edit',['book'=>$book,'authors' => $authors, 'publishers' => $publishers]);
+        //return view('book_edit',['book'=>$book,'authors' => $authors, 'publishers' => $publishers]);
+
+        return view('edit_tpl',[
+            'thing'=>'book',
+            'book'=>$book,
+            'option_input' => ['authors' => $authors, 'publishers' => $publishers],
+            'text_input' => ['title','publish_year']
+        ]);
     }
 
     public function update(Request $request)
@@ -79,7 +88,7 @@ class BookController extends Controller
 
         $book->save();
 
-        return view('book_index',['books' => $this->getBooks()]);
+        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
     }
 
     public function delete()

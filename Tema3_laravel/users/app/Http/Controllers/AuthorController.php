@@ -36,7 +36,25 @@ class AuthorController extends Controller
     }
     public function edit()
     {
+        $id = request('id');
 
+        $author = Author::where('id',$id)->first();
+
+        return view('edit_tpl',[
+            'thing'=>'author',
+            'author'=>$author,
+            'text_input' => ['name']
+        ]);
+    }
+    public function update(Request $request)
+    {
+        $author = Author::find($request->id);
+
+        $author->name = $request->name;
+
+        $author->save();
+
+        return view('index_tpl',['thing'=>'author', 'authors' => $this->getAuthors()]);
     }
     public function delete()
     {
