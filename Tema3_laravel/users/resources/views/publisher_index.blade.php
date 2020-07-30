@@ -49,44 +49,29 @@
     </tr>
 </table>
 
-
 <br>
 <table>
     <tr>
         <th>ID</th>
-        <th>Title</th>
-        <th>Author Name</th>
-        <th>Publisher Name</th>
-        <th>Publish Year</th>
+        <th>Name</th>
         <th>Created at</th>
         <th>Updated at</th>
         <th></th>
-        <th></th>
     </tr>
 
-    @foreach( $books as $book )
+    @foreach( $publishers as $publisher )
     <tr>
-        <td>{{ $book->id }}</td>
-        <td>{{ $book->title }}</td>
-        <td>{{ $book->author_name }}</td>
-        <td>{{ $book->publisher_name }}</td>
-        <td>{{ $book->publish_year }}</td>
-        <td>{{ $book->created_at }}</td>
-        <td>{{ $book->updated_at }}</td>
+        <td>{{ $publisher->id }}</td>
+        <td>{{ $publisher->name }}</td>
+        <td>{{ $publisher->created_at }}</td>
+        <td>{{ $publisher->updated_at }}</td>
         <td>
-            <form action="{{ action('BookController@edit') }}">
-                <input type="hidden" name="id" value="{{$book->id}}">
-                <input type="submit" value="Edit book">
-            </form>
-        </td>
-        <td>
-            <form action="{{ action('BookController@delete') }}">
-                <input type="hidden" name="id" value="{{$book->id}}">
-                <input type="submit" value="Delete book">
+            <form action="{{ action('PublisherController@delete') }}">
+                <input type="hidden" name="id" value="{{$publisher->id}}">
+                <input type="submit" value="Delete publisher">
             </form>
         </td>
     </tr>
     @endforeach
-
 </body>
 </html>

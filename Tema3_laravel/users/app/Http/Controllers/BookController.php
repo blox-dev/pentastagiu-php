@@ -15,8 +15,8 @@ class BookController extends Controller
 
         foreach($books as $book)
         {
-            $book['author_name'] = Author::with('book')->where('id',$book->author_id)->first()->name;
-            $book['publisher_name']= Publisher::with('book')->where('id',$book->publisher_id)->first()->name;
+            $book['author_name'] = Author::where('id',$book->author_id)->first()->name;
+            $book['publisher_name']= Publisher::where('id',$book->publisher_id)->first()->name;
         }
 
         return $books;
@@ -32,7 +32,9 @@ class BookController extends Controller
         $authors = Author::all();
         $publishers = Publisher::all();
 
-        return view('book_create',['authors' => $authors, 'publishers' => $publishers]);
+        return view('create_tpl',['thing'=>'book',
+            'option_input' => ['authors' => $authors, 'publishers' => $publishers],
+            'text_input' => ['title','publish_year']]);
     }
    public function store(Request $request)
     {
@@ -85,6 +87,7 @@ class BookController extends Controller
         $id = request('id');
 
         Book::where("id",$id)->delete();
+
 
         return view('book_index',['books' => $this->getBooks()]);
     }
