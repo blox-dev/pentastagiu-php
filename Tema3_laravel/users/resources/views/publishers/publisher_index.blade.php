@@ -62,5 +62,8 @@
         </td>
     </tr>
     @endforeach
+</table>
+{{$publishers->links()}}
+
 </body>
 </html>

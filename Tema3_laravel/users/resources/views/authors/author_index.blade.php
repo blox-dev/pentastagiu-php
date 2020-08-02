@@ -62,5 +62,7 @@
         </td>
     </tr>
     @endforeach
+</table>
+{{$authors->links()}}
 </body>
 </html>

@@ -68,5 +68,7 @@
         </td>
     </tr>
     @endforeach
+</table>
+    {{$books->links()}}
 </body>
 </html>

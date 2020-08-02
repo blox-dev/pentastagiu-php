@@ -10,7 +10,7 @@ class PublisherController extends Controller
 {
     private function getPublishers()
     {
-        return Publisher::all();
+        return Publisher::paginate(10);
     }
 
     public function index(){

@@ -26,26 +26,17 @@ class CreateBooksTable extends Migration
             //$table->foreign('publisher_id')->references('id')->on('publishers');
         });
 
+        for($i = 0 ; $i<30 ; $i++){
+
         $book = new Book([
-            'title' => 'Cartea 1',
-            'author_id' => 1,
-            'publisher_id' => 1,
-            'publish_year' => 1999
+            'title' => 'Cartea '.$i,
+            'author_id' => $i%3+1,
+            'publisher_id' => $i%3+1,
+            'publish_year' => 1900+$i
         ]);
 
         $book->save();
-
-        $book->newInstance()->fill([
-            'title' => 'Cartea 2',
-            'author_id' => 2,
-            'publisher_id' => 2,
-            'publish_year' => 1998])->save();
-
-        $book->newInstance()->fill([
-            'title' => 'Cartea 3',
-            'author_id' => 3,
-            'publisher_id' => 3,
-            'publish_year' => 2000])->save();
+        }
     }
 
     /**

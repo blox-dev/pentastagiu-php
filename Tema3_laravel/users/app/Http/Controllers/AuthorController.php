@@ -11,7 +11,7 @@ class AuthorController extends Controller
 {
     private function getAuthors()
     {
-        return Author::all();
+        return Author::paginate(10);
     }
 
     public function index(){
