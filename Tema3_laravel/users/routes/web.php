@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'BookController@index');
+Route::get('/', function () {
+    return redirect('/user');
+});
 
 Route::get('/books','BookController@index');
 Route::get('/books/create','BookController@create');
@@ -35,3 +37,8 @@ Route::post('/publishers/store','PublisherController@store');
 Route::get('/publishers/edit','PublisherController@edit');
 Route::post('/publishers/update','PublisherController@update');
 Route::get('/publishers/delete','PublisherController@delete');
+
+Route::get('/users','UserController@index');
+Route::get('/user','UserController@create');
+Route::post('/user/store','UserController@store');
+Route::get('/user/{username}','UserController@show');

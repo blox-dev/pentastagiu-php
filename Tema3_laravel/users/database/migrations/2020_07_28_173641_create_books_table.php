@@ -30,9 +30,9 @@ class CreateBooksTable extends Migration
 
         $book = new Book([
             'title' => 'Cartea '.$i,
-            'author_id' => $i%3+1,
-            'publisher_id' => $i%3+1,
-            'publish_year' => 1900+$i
+            'author_id' => rand()%3+1,
+            'publisher_id' => rand()%3+1,
+            'publish_year' => rand(1900,date('Y'))
         ]);
 
         $book->save();
