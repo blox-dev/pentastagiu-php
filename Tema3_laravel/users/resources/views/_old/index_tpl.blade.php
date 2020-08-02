@@ -3,6 +3,7 @@
 <head>
     <title>View {{$thing.'s'}}</title>
     <link rel="stylesheet" type="text/css" href="{{url('css/styles.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.css')}}">
 </head>
 <body>
 

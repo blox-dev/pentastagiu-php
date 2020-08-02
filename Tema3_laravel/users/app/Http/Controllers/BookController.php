@@ -11,20 +11,14 @@ class BookController extends Controller
 {
     private function getBooks()
     {
-        $books = Book::all();
-
-        foreach($books as $book)
-        {
-            $book['author_name'] = Author::where('id',$book->author_id)->first()->name;
-            $book['publisher_name']= Publisher::where('id',$book->publisher_id)->first()->name;
-        }
+        $books = Book::with('author','publisher')->get();
 
         return $books;
     }
 
     public function index()
     {
-        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
+        return view('books/book_index',['books' => $this->getBooks()]);
     }
 
     public function create()
@@ -32,11 +26,7 @@ class BookController extends Controller
         $authors = Author::all();
         $publishers = Publisher::all();
 
-        return view('create_tpl',[
-            'thing'=>'book',
-            'option_input' => ['authors' => $authors, 'publishers' => $publishers],
-            'text_input' => ['title','publish_year']
-        ]);
+        return view('books/book_create',['authors' => $authors, 'publishers' => $publishers]);
     }
    public function store(Request $request)
     {
@@ -50,12 +40,7 @@ class BookController extends Controller
 
         $book->save();
 
-        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
-    }
-
-    public function show($id)
-    {
-        //
+        return redirect('/books');
     }
 
     public function edit()
@@ -67,14 +52,7 @@ class BookController extends Controller
         $authors = Author::all();
         $publishers = Publisher::all();
 
-        //return view('book_edit',['book'=>$book,'authors' => $authors, 'publishers' => $publishers]);
-
-        return view('edit_tpl',[
-            'thing'=>'book',
-            'book'=>$book,
-            'option_input' => ['authors' => $authors, 'publishers' => $publishers],
-            'text_input' => ['title','publish_year']
-        ]);
+        return view('books/book_edit',['book'=>$book,'authors' => $authors, 'publishers' => $publishers]);
     }
 
     public function update(Request $request)
@@ -88,7 +66,7 @@ class BookController extends Controller
 
         $book->save();
 
-        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
+        return redirect('/books');
     }
 
     public function delete()
@@ -97,7 +75,6 @@ class BookController extends Controller
 
         Book::where("id",$id)->delete();
 
-
-        return view('index_tpl',['thing'=>'book', 'books' => $this->getBooks()]);
+        return redirect('/books');
     }
 }

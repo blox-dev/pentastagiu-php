@@ -1,5 +1,6 @@
 <?php
 
+use App\Book;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,9 +21,12 @@ class CreateBooksTable extends Migration
             $table->bigInteger('publisher_id');
             $table->integer('publish_year');
             $table->timestamps();
+
+            //$table->foreign('author_id')->references('id')->on('authors');
+            //$table->foreign('publisher_id')->references('id')->on('publishers');
         });
 
-        $book = new \App\Book([
+        $book = new Book([
             'title' => 'Cartea 1',
             'author_id' => 1,
             'publisher_id' => 1,

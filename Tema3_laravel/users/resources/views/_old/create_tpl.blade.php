@@ -2,9 +2,10 @@
     <head>
         <title>Create {{$thing}}</title>
         <link rel="stylesheet" type="text/css" href="{{url('css/styles.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.css')}}">
     </head>
     <body>
-        <h3> Insert {{$thing}} details </h3>
+        <h3 class="alert alert-danger"> Insert {{$thing}} details </h3>
         <div>
             <form action="{{ action(ucfirst($thing).'Controller@store') }}" method="POST">
                 @csrf

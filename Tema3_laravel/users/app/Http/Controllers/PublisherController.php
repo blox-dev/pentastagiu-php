@@ -14,14 +14,12 @@ class PublisherController extends Controller
     }
 
     public function index(){
-        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
+        return view('publishers/publisher_index',['publishers' => $this->getPublishers()]);
     }
 
     public function create()
     {
-        return view('create_tpl',['thing'=>'publisher',
-            'text_input' => ['name']
-        ]);
+        return view('publishers/publisher_create');
     }
     public function store(Request $request)
     {
@@ -31,7 +29,7 @@ class PublisherController extends Controller
 
         $publisher->save();
 
-        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
+        return redirect('/publishers');
     }
     public function edit()
     {
@@ -39,11 +37,7 @@ class PublisherController extends Controller
 
         $publisher = Publisher::where('id',$id)->first();
 
-        return view('edit_tpl',[
-            'thing'=>'publisher',
-            'publisher'=>$publisher,
-            'text_input' => ['name']
-        ]);
+        return view('publishers/publisher_edit',['publisher'=>$publisher]);
     }
     public function update(Request $request)
     {
@@ -53,7 +47,7 @@ class PublisherController extends Controller
 
         $publisher->save();
 
-        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
+        return redirect('/publishers');
     }
     public function delete()
     {
@@ -62,6 +56,6 @@ class PublisherController extends Controller
         Publisher::where("id",$id)->delete();
         Book::where("publisher_id",$id)->delete();
 
-        return view('index_tpl',['thing'=>'publisher', 'publishers' => $this->getPublishers()]);
+        return redirect('/publishers');
     }
 }

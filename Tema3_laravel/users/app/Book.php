@@ -16,11 +16,11 @@ class Book extends Model
 
     public function author()
     {
-        return $this->hasOne('App\Author');
+        return $this->belongsTo(Author::class);
     }
 
     public function publisher()
     {
-        return $this->hasOne('App\Publisher');
+        return $this->belongsTo(Publisher::class);
     }
 }
