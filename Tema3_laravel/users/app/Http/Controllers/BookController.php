@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Author;
 use App\Book;
+use App\Http\Requests\BookStoreRequest;
 use App\Publisher;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class BookController extends Controller
 
         return view('books/book_create',['authors' => $authors, 'publishers' => $publishers]);
     }
-   public function store(Request $request)
+   public function store(BookStoreRequest $request)
     {
 
         $book = new Book([
@@ -53,7 +54,7 @@ class BookController extends Controller
         return view('books/book_edit',['book'=>$book,'authors' => $authors, 'publishers' => $publishers]);
     }
 
-    public function update(Request $request)
+    public function update(BookStoreRequest $request)
     {
         $book = Book::find($request->id);
 

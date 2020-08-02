@@ -7,6 +7,16 @@
 <body>
 <h3> Edit book details</h3>
 
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{ action('BookController@update') }}" method="POST">
     @csrf
     <input type="hidden" name="id" value="{{$book->id}}">

@@ -6,6 +6,17 @@
 </head>
 <body>
 <h3> Insert book details </h3>
+
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <div>
     <form action="{{ action('BookController@store') }}" method="POST">
         @csrf

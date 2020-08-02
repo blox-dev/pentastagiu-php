@@ -7,6 +7,17 @@
 <body>
 <h3> Edit author details</h3>
 
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+
 <form action="{{ action('AuthorController@update') }}" method="POST">
     @csrf
     <input type="hidden" name="id" value="{{$author->id}}">

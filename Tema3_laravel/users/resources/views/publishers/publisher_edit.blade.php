@@ -7,6 +7,16 @@
 <body>
 <h3> Edit publisher details</h3>
 
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 <form action="{{ action('PublisherController@update') }}" method="POST">
     @csrf
     <input type="hidden" name="id" value="{{$publisher->id}}">

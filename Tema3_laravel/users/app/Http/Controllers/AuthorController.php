@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Author;
 use App\Book;
+use App\Http\Requests\AuthorStoreRequest;
 use App\Publisher;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class AuthorController extends Controller
     {
         return view('authors/author_create');
     }
-    public function store(Request $request)
+    public function store(AuthorStoreRequest $request)
     {
         $author = new Author([
             'name' => $request->name,
@@ -40,7 +41,7 @@ class AuthorController extends Controller
 
         return view('authors/author_edit',['author'=>$author]);
     }
-    public function update(Request $request)
+    public function update(AuthorStoreRequest $request)
     {
         $author = Author::find($request->id);
 

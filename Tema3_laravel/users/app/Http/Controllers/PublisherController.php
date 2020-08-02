@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Http\Requests\PublisherStoreRequest;
 use App\Publisher;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class PublisherController extends Controller
     {
         return view('publishers/publisher_create');
     }
-    public function store(Request $request)
+    public function store(PublisherStoreRequest $request)
     {
         $publisher = new Publisher([
             'name' => $request->name,
@@ -39,7 +40,7 @@ class PublisherController extends Controller
 
         return view('publishers/publisher_edit',['publisher'=>$publisher]);
     }
-    public function update(Request $request)
+    public function update(PublisherStoreRequest $request)
     {
         $publisher = Publisher::find($request->id);
 
