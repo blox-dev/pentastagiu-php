@@ -28,4 +28,14 @@ class Book extends Model
     {
         return $this->belongsToMany(User::class, 'transactions')->withPivot('transaction_time','return_time');
     }
+
+    public function getTitleAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = strtolower($value);
+    }
 }

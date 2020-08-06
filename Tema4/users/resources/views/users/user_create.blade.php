@@ -50,7 +50,8 @@
         <div style="font-size: 50px;">
             <form method="POST" action="{{action('UserController@store')}}">
                 @csrf
-                <label for="username"></label><input type="text" id="username" name="username">
+                <label for="username"></label><input type="text" id="username" name="username" required>
+                <input type="submit" value="Confirm">
             </form>
             <a href="{{action('BookController@index')}}">View database</a>
         </div>
