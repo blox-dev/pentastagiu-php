@@ -6,25 +6,68 @@
 </head>
 <body>
 
+<p><a href="{{url('/')}}">Go to index</a></p>
+
+<table>
+    <tr>
+        <th>View Libraries</th>
+        <th>Add item</th>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{action('BookController@index')}}">View books</a>
+        </td>
+        <td>
+            <a href="{{action('BookController@create')}}">Add book</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{action('AuthorController@index')}}">View authors</a>
+        </td>
+        <td>
+            <a href="{{action('AuthorController@create')}}">Add author</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{action('PublisherController@index')}}">View publishers</a>
+        </td>
+        <td>
+            <a href="{{action('PublisherController@create')}}">Add publisher</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{action('UserController@index')}}">View users</a>
+        </td>
+        <td>not yet</td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{action('TransactionController@index')}}">View transactions</a>
+        </td>
+        <td>not yet</td>
+    </tr>
+</table>
+
+<br>
+
 <table>
     <tr>
         <th>ID</th>
-        <th>Book ID</th>
-        <th>User ID</th>
+        <th>Username</th>
+        <th>Book title</th>
         <th>Transaction time</th>
         <th>Return time</th>
-        <th>Created at</th>
-        <th>Updated at</th>
     </tr>
     @foreach( $transactions as $transaction )
     <tr>
         <td>{{ $transaction->id }}</td>
-        <td>{{ $transaction->book_id }}</td>
-        <td>{{ $transaction->user_id }}</td>
+        <td>{{ $transaction->user->username }}</td>
+        <td>{{ $transaction->book->title }}</td>
         <td>{{ $transaction->transaction_time }}</td>
         <td>{{ $transaction->return_time }}</td>
-        <td>{{ $transaction->created_at }}</td>
-        <td>{{ $transaction->updated_at }}</td>
     </tr>
     @endforeach
 </table>

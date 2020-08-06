@@ -19,7 +19,6 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('book_id');
             $table->timestamp('transaction_time')->nullable();
             $table->timestamp('return_time')->nullable();
-            $table->timestamps();
         });
     }
 

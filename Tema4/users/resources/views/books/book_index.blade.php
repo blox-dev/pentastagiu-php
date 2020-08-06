@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<p><a href="{{url('/')}}">Go to index</a></p>
+
 <table>
     <tr>
         <th>View Libraries</th>
@@ -35,9 +37,22 @@
             <a href="{{action('PublisherController@create')}}">Add publisher</a>
         </td>
     </tr>
+    <tr>
+        <td>
+            <a href="{{action('UserController@index')}}">View users</a>
+        </td>
+        <td>not yet</td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{{action('TransactionController@index')}}">View transactions</a>
+        </td>
+        <td>not yet</td>
+    </tr>
 </table>
 
 <br>
+
 <table>
     <tr>
         <th>ID</th>

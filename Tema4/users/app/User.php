@@ -10,4 +10,9 @@ class User extends Model
     protected $fillable = [
         'username'
     ];
+
+    public function book()
+    {
+        return $this->belongsToMany(Book::class, 'transactions')->withPivot('transaction_time','return_time');
+    }
 }

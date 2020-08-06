@@ -23,4 +23,9 @@ class Book extends Model
     {
         return $this->belongsTo(Publisher::class);
     }
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'transactions')->withPivot('transaction_time','return_time');
+    }
 }

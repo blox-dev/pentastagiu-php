@@ -32,27 +32,31 @@ class UserController extends Controller
             $user->save();
         }
 
-        return redirect('/user/'.$username);
-    }
-    public function show($username)
-    {
-        $user = User::where('username',$username)->first();
-        $transactions = Transaction::where('user_id',$user->id)->with(['user','book.author','book.publisher'])->get();
+        $user = User::where('username',$request->username)->first();
 
-//        $user_books = $transactions->map(function ($transaction){
-//           return $transaction->only(['book']);
-//        });
+        return redirect('/user/'.$user->id);
+    }
+    public function show($user_id)
+    {
+        $user = User::where('id',$user_id)->first();
+        $user_books = User::where('id',$user_id)->with(['book.author','book.publisher'])->first();
 
         $books = Book::with(['author','publisher'])->paginate(10);
 
-        return view('users/user_profile',['username' => $username, 'transactions' => $transactions,'books'=>$books]);
+        return view('users/user_profile',['user' => $user, 'books'=>$books, 'user_books' => $user_books]);
     }
 
-    public function viewBook($username, $book_id)
+    public function viewBook($user_id, $book_id)
     {
         $book = Book::where('id',$book_id)->with(['author','publisher'])->first();
-        $user_id = User::where('username',$username)->first()->id;
 
-        return view('users/buy_book',['user_id' => $user_id,'book' => $book]);
+        $transaction = Transaction::where('user_id',$user_id)->where('book_id',$book->id)->get();
+
+        $book_already_bought = false;
+
+        if(count($transaction))
+            $book_already_bought = true;
+
+        return view('users/buy_book',['user_id' => $user_id,'book' => $book, 'bought' => $book_already_bought]);
     }
 }

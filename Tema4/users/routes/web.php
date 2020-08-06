@@ -41,9 +41,10 @@ Route::get('/publishers/delete','PublisherController@delete');
 Route::get('/users','UserController@index');
 Route::get('/user','UserController@create');
 Route::post('/user/store','UserController@store');
-Route::get('/user/{username}','UserController@show');
-Route::get('/user/{username}/{book_id}', 'UserController@viewBook');
+Route::get('/user/{user_id}','UserController@show');
+Route::get('/user/{user_id}/{book_id}', 'UserController@viewBook');
 
 
 Route::get('/transactions','TransactionController@index');
-Route::post('/transactions','TransactionController@store');
+Route::post('/transactions/store','TransactionController@store');
+Route::post('/transactions/delete','TransactionController@delete');
