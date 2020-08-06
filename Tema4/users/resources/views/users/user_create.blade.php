@@ -52,6 +52,7 @@
                 @csrf
                 <label for="username"></label><input type="text" id="username" name="username">
             </form>
+            <a href="{{action('BookController@index')}}">View database</a>
         </div>
     </div>
 </div>
