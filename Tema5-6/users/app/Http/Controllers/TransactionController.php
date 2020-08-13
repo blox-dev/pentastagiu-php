@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransactionRequest;
 use App\Transaction;
-use App\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -18,7 +18,7 @@ class TransactionController extends Controller
         return view('transactions/transaction_index',['transactions' => $this->getTransactions()]);
     }
 
-    public function store(Request $request)
+    public function store(TransactionRequest $request)
     {
         $book_id = $request->book_id;
         $user_id = $request->user_id;
@@ -33,9 +33,9 @@ class TransactionController extends Controller
         $transaction->timestamps = false;
         $transaction->save();
 
-        return redirect('/user/'.$user_id);
+        return redirect('/user/');
     }
-    public function delete(Request $request)
+    public function delete(TransactionRequest $request)
     {
         Transaction::where('user_id',$request->user_id)->where('book_id',$request->book_id)->delete();
 

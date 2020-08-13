@@ -16,7 +16,7 @@
         <form method="post" action="{{action('TransactionController@store')}}">
             @csrf
             <input type="hidden" name="book_id" value="{{$book->id}}">
-            <input type="hidden" name="user_id" value="{{$user_id}}">
+            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
             <input type="submit" value="Borrow book for a month">
         </form>
         @else

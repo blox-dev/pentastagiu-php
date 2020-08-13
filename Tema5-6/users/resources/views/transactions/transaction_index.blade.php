@@ -1,19 +1,15 @@
-<html lang="ro">
-<head>
-    <title>View transactions</title>
-    <link rel="stylesheet" type="text/css" href="{{url('css/styles.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('css/bootstrap.css')}}">
-</head>
-<body>
+@extends('layouts.app')
 
-<p><a href="{{url('/')}}">Go to index</a></p>
+@section('content')
 
-<table>
-    <tr>
+<link rel="stylesheet" type="text/css" href="{{url('css/styles.css')}}">
+
+<table class="content-table">
+    <tr class="content-row">
         <th>View Libraries</th>
         <th>Add item</th>
     </tr>
-    <tr>
+    <tr class="content-row">
         <td>
             <a href="{{action('BookController@index')}}">View books</a>
         </td>
@@ -21,7 +17,7 @@
             <a href="{{action('BookController@create')}}">Add book</a>
         </td>
     </tr>
-    <tr>
+    <tr class="content-row">
         <td>
             <a href="{{action('AuthorController@index')}}">View authors</a>
         </td>
@@ -29,7 +25,7 @@
             <a href="{{action('AuthorController@create')}}">Add author</a>
         </td>
     </tr>
-    <tr>
+    <tr class="content-row">
         <td>
             <a href="{{action('PublisherController@index')}}">View publishers</a>
         </td>
@@ -37,13 +33,13 @@
             <a href="{{action('PublisherController@create')}}">Add publisher</a>
         </td>
     </tr>
-    <tr>
+    <tr class="content-row">
         <td>
             <a href="{{action('UserController@index')}}">View users</a>
         </td>
         <td>not yet</td>
     </tr>
-    <tr>
+    <tr class="content-row">
         <td>
             <a href="{{action('TransactionController@index')}}">View transactions</a>
         </td>
@@ -53,8 +49,8 @@
 
 <br>
 
-<table>
-    <tr>
+<table class="content-table">
+    <tr class="content-row">
         <th>ID</th>
         <th>Name</th>
         <th>Book title</th>
@@ -62,7 +58,7 @@
         <th>Return time</th>
     </tr>
     @foreach( $transactions as $transaction )
-    <tr>
+    <tr class="content-row">
         <td>{{ $transaction->id }}</td>
         <td>{{ $transaction->user->name }}</td>
         <td>{{ $transaction->book->title }}</td>
@@ -72,5 +68,5 @@
     @endforeach
 </table>
 {{$transactions->links()}}
-</body>
-</html>
+
+@endsection
