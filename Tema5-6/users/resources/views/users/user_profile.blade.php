@@ -2,6 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" type="text/css" href="{{url('css/styles.css')}}">
+    @include('notification')
     @auth
         <p>Yo what's up, {{Auth::user()->name}}. Wanna borrow a book?</p>
 
